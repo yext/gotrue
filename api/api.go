@@ -100,7 +100,7 @@ func NewAPIWithVersion(ctx context.Context, globalConfig *conf.GlobalConfigurati
 		r.Get("/", api.ExternalProviderCallback)
 	})
 
-	r.Route("/", func(r *router) {
+	r.Route("/hitchhikerusers", func(r *router) {
 		r.UseBypass(logger)
 
 		if globalConfig.MultiInstanceMode {

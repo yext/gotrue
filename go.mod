@@ -1,4 +1,4 @@
-module github.com/netlify/gotrue
+module github.com/yext/gotrue
 
 require (
 	cloud.google.com/go v0.0.0-20170822200954-98f5696b1026 // indirect
@@ -52,5 +52,7 @@ require (
 	gopkg.in/yaml.v1 v1.0.0-20140924161607-9f9df34309c0 // indirect
 	gopkg.in/yaml.v2 v2.2.5 // indirect
 )
+
+replace github.com/netlify/gotrue => github.com/yext/gotrue hitchhikerusersapi
 
 go 1.13
