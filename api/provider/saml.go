@@ -17,14 +17,14 @@ import (
 	"strings"
 	"time"
 
-	"github.com/yext/gotrue/models"
-	"github.com/yext/gotrue/storage"
+	"github.com/netlify/gotrue/models"
+	"github.com/netlify/gotrue/storage"
 
-	"github.com/gobuffalo/uuid"
+	"github.com/netlify/gotrue/conf"
 	saml2 "github.com/russellhaering/gosaml2"
 	"github.com/russellhaering/gosaml2/types"
 	dsig "github.com/russellhaering/goxmldsig"
-	"github.com/yext/gotrue/conf"
+	"github.com/gobuffalo/uuid"
 	"golang.org/x/oauth2"
 )
 

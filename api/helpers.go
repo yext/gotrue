@@ -10,11 +10,11 @@ import (
 	"net/url"
 
 	"github.com/gobuffalo/uuid"
+	"github.com/netlify/gotrue/conf"
+	"github.com/netlify/gotrue/models"
+	"github.com/netlify/gotrue/storage"
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
-	"github.com/yext/gotrue/conf"
-	"github.com/yext/gotrue/models"
-	"github.com/yext/gotrue/storage"
 )
 
 func addRequestID(globalConfig *conf.GlobalConfiguration) middlewareHandler {

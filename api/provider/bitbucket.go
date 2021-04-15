@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 
-	"github.com/yext/gotrue/conf"
+	"github.com/netlify/gotrue/conf"
 	"golang.org/x/oauth2"
 )
 

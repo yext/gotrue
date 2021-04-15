@@ -6,9 +6,9 @@ import (
 	"time"
 
 	"github.com/gobuffalo/uuid"
+	"github.com/netlify/gotrue/storage"
+	"github.com/netlify/gotrue/storage/namespace"
 	"github.com/pkg/errors"
-	"github.com/yext/gotrue/storage"
-	"github.com/yext/gotrue/storage/namespace"
 )
 
 type AuditAction string

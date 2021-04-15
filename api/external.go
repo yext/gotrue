@@ -11,10 +11,10 @@ import (
 
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/gobuffalo/uuid"
+	"github.com/netlify/gotrue/api/provider"
+	"github.com/netlify/gotrue/models"
+	"github.com/netlify/gotrue/storage"
 	"github.com/sirupsen/logrus"
-	"github.com/yext/gotrue/api/provider"
-	"github.com/yext/gotrue/models"
-	"github.com/yext/gotrue/storage"
 )
 
 type ExternalProviderClaims struct {

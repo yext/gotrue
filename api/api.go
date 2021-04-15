@@ -14,12 +14,12 @@ import (
 	"github.com/go-chi/chi"
 	"github.com/gobuffalo/uuid"
 	"github.com/imdario/mergo"
+	"github.com/netlify/gotrue/conf"
+	"github.com/netlify/gotrue/mailer"
+	"github.com/netlify/gotrue/storage"
 	"github.com/rs/cors"
 	"github.com/sebest/xff"
 	"github.com/sirupsen/logrus"
-	"github.com/yext/gotrue/conf"
-	"github.com/yext/gotrue/mailer"
-	"github.com/yext/gotrue/storage"
 )
 
 const (

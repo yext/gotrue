@@ -1,15 +1,14 @@
 package models
 
 import (
+	"github.com/netlify/gotrue/storage/namespace"
 	"time"
-
-	"github.com/yext/gotrue/storage/namespace"
 
 	"github.com/gobuffalo/pop"
 	"github.com/gobuffalo/uuid"
+	"github.com/netlify/gotrue/crypto"
+	"github.com/netlify/gotrue/storage"
 	"github.com/pkg/errors"
-	"github.com/yext/gotrue/crypto"
-	"github.com/yext/gotrue/storage"
 )
 
 // RefreshToken is the database model for refresh tokens.

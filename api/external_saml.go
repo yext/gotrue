@@ -4,7 +4,7 @@ import (
 	"context"
 	"net/http"
 
-	"github.com/yext/gotrue/api/provider"
+	"github.com/netlify/gotrue/api/provider"
 )
 
 func (a *API) loadSAMLState(w http.ResponseWriter, r *http.Request) (context.Context, error) {

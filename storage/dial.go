@@ -8,10 +8,10 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/gobuffalo/pop"
 	"github.com/gobuffalo/pop/columns"
+	"github.com/netlify/gotrue/conf"
+	"github.com/netlify/gotrue/storage/namespace"
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
-	"github.com/yext/gotrue/conf"
-	"github.com/yext/gotrue/storage/namespace"
 )
 
 // Connection is the interface a storage provider must implement.

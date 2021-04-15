@@ -6,7 +6,7 @@ import (
 	"net/url"
 	"strconv"
 
-	"github.com/yext/gotrue/models"
+	"github.com/netlify/gotrue/models"
 )
 
 const defaultPerPage = 50

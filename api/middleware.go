@@ -11,7 +11,7 @@ import (
 	"github.com/didip/tollbooth/v5"
 	"github.com/didip/tollbooth/v5/limiter"
 	"github.com/gobuffalo/uuid"
-	"github.com/yext/gotrue/models"
+	"github.com/netlify/gotrue/models"
 )
 
 const (
