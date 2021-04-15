@@ -10,12 +10,12 @@ import (
 	"time"
 
 	jwt "github.com/dgrijalva/jwt-go"
-	"github.com/netlify/gotrue/conf"
-	"github.com/netlify/gotrue/models"
 	"github.com/gobuffalo/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
+	"github.com/yext/gotrue/conf"
+	"github.com/yext/gotrue/models"
 )
 
 type AdminTestSuite struct {

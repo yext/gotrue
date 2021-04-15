@@ -7,10 +7,10 @@ import (
 	"testing"
 
 	"github.com/gobuffalo/uuid"
-	"github.com/netlify/gotrue/conf"
-	"github.com/netlify/gotrue/models"
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
+	"github.com/yext/gotrue/conf"
+	"github.com/yext/gotrue/models"
 )
 
 type ExternalTestSuite struct {

@@ -53,6 +53,4 @@ require (
 	gopkg.in/yaml.v2 v2.2.5 // indirect
 )
 
-replace github.com/netlify/gotrue => github.com/yext/gotrue hitchhikerusersapi
-
 go 1.13

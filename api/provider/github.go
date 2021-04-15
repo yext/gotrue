@@ -5,7 +5,7 @@ import (
 	"errors"
 	"strings"
 
-	"github.com/netlify/gotrue/conf"
+	"github.com/yext/gotrue/conf"
 	"golang.org/x/oauth2"
 )
 

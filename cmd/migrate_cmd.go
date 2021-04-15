@@ -4,10 +4,10 @@ import (
 	"net/url"
 
 	"github.com/gobuffalo/pop"
-	"github.com/netlify/gotrue/conf"
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	"github.com/yext/gotrue/conf"
 )
 
 var migrateCmd = cobra.Command{

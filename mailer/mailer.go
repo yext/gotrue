@@ -4,10 +4,10 @@ import (
 	"net/url"
 	"regexp"
 
-	"github.com/netlify/gotrue/conf"
-	"github.com/netlify/gotrue/models"
 	"github.com/netlify/mailme"
 	"github.com/sirupsen/logrus"
+	"github.com/yext/gotrue/conf"
+	"github.com/yext/gotrue/models"
 )
 
 // Mailer defines the interface a mailer must implement.
