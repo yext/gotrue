@@ -7,9 +7,9 @@ import (
 
 	"github.com/go-chi/chi"
 	"github.com/gobuffalo/uuid"
-	"github.com/netlify/gotrue/conf"
-	"github.com/netlify/gotrue/models"
 	"github.com/pkg/errors"
+	"github.com/yext/gotrue/conf"
+	"github.com/yext/gotrue/models"
 )
 
 func (a *API) loadInstance(w http.ResponseWriter, r *http.Request) (context.Context, error) {

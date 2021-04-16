@@ -18,9 +18,9 @@ import (
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 
-	"github.com/netlify/gotrue/conf"
-	"github.com/netlify/gotrue/models"
-	"github.com/netlify/gotrue/storage"
+	"github.com/yext/gotrue/conf"
+	"github.com/yext/gotrue/models"
+	"github.com/yext/gotrue/storage"
 )
 
 type HookEvent string

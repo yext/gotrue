@@ -5,11 +5,11 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/netlify/gotrue/api"
-	"github.com/netlify/gotrue/conf"
-	"github.com/netlify/gotrue/storage"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	"github.com/yext/gotrue/api"
+	"github.com/yext/gotrue/conf"
+	"github.com/yext/gotrue/storage"
 )
 
 var multiCmd = cobra.Command{

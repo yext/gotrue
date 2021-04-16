@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/netlify/gotrue/models"
-	"github.com/netlify/gotrue/storage"
 	"github.com/gobuffalo/uuid"
+	"github.com/yext/gotrue/models"
+	"github.com/yext/gotrue/storage"
 )
 
 // UserUpdateParams parameters for updating a user

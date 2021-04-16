@@ -6,9 +6,9 @@ import (
 	"net/http"
 
 	"github.com/go-chi/chi"
-	"github.com/netlify/gotrue/models"
-	"github.com/netlify/gotrue/storage"
 	"github.com/gobuffalo/uuid"
+	"github.com/yext/gotrue/models"
+	"github.com/yext/gotrue/storage"
 )
 
 type adminUserParams struct {

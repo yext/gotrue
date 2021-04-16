@@ -9,11 +9,11 @@ import (
 
 	"github.com/gobuffalo/uuid"
 
-	"github.com/netlify/gotrue/conf"
-	"github.com/netlify/gotrue/models"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
+	"github.com/yext/gotrue/conf"
+	"github.com/yext/gotrue/models"
 )
 
 var testUUID = uuid.Must(uuid.FromString("11111111-1111-1111-1111-111111111111"))
