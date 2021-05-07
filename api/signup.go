@@ -51,13 +51,7 @@ func (a *API) Signup(w http.ResponseWriter, r *http.Request) error {
 	err = a.db.Transaction(func(tx *storage.Connection) error {
 		var terr error
 		if user != nil {
-			if user.IsConfirmed() {
-				return badRequestError("A user with this email address has already been registered")
-			}
-
-			if err := user.UpdateUserMetaData(tx, params.Data); err != nil {
-				return internalServerError("Database error updating user").WithInternalError(err)
-			}
+			return badRequestError("A user with this email address has already been registered")
 		} else {
 			params.Provider = "email"
 			user, terr = a.signupNewUser(ctx, tx, params)

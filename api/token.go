@@ -64,10 +64,6 @@ func (a *API) ResourceOwnerPasswordGrant(ctx context.Context, w http.ResponseWri
 		return internalServerError("Database error finding user").WithInternalError(err)
 	}
 
-	if !user.IsConfirmed() {
-		return oauthError("invalid_grant", "Email not confirmed")
-	}
-
 	if !user.Authenticate(password) {
 		return oauthError("invalid_grant", "Invalid Password")
 	}
