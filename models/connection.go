@@ -1,7 +1,7 @@
 package models
 
 import (
-	"github.com/gobuffalo/pop"
+	"github.com/gobuffalo/pop/v5"
 	"github.com/yext/gotrue/storage"
 )
 
