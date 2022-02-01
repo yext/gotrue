@@ -58,7 +58,7 @@ func (ts *SignupTestSuite) TestSignup() {
 	}))
 
 	// Setup request
-	req := httptest.NewRequest(http.MethodPost, "/signup", &buffer)
+	req := httptest.NewRequest(http.MethodPost, "/hitchhikerusers/signup", &buffer)
 	req.Header.Set("Content-Type", "application/json")
 
 	// Setup response recorder
