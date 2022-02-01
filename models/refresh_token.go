@@ -12,6 +12,8 @@ import (
 	"github.com/yext/gotrue/storage"
 )
 
+// TEST
+
 // RefreshToken is the database model for refresh tokens.
 type RefreshToken struct {
 	InstanceID uuid.UUID `json:"-" db:"instance_id"`
