@@ -5,7 +5,7 @@ import (
 
 	"github.com/gobuffalo/pop/v5"
 	"github.com/stretchr/testify/assert"
-	"github.com/yext/gotrue/models"
+	"github.com/netlify/gotrue/models"
 )
 
 func TestTableNameNamespacing(t *testing.T) {

@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/yext/gotrue/models"
+	"github.com/netlify/gotrue/models"
 )
 
 var filterColumnMap = map[string][]string{

@@ -3,8 +3,8 @@ package mailer
 import (
 	"github.com/badoux/checkmail"
 	"github.com/netlify/mailme"
-	"github.com/yext/gotrue/conf"
-	"github.com/yext/gotrue/models"
+	"github.com/netlify/gotrue/conf"
+	"github.com/netlify/gotrue/models"
 )
 
 // TemplateMailer will send mail and use templates from the site for easy mail styling

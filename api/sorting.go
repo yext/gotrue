@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/yext/gotrue/models"
+	"github.com/netlify/gotrue/models"
 )
 
 func sort(r *http.Request, allowedFields map[string]bool, defaultSort []models.SortField) (*models.SortParams, error) {

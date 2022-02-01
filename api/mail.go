@@ -5,10 +5,10 @@ import (
 	"time"
 
 	"github.com/pkg/errors"
-	"github.com/yext/gotrue/crypto"
-	"github.com/yext/gotrue/mailer"
-	"github.com/yext/gotrue/models"
-	"github.com/yext/gotrue/storage"
+	"github.com/netlify/gotrue/crypto"
+	"github.com/netlify/gotrue/mailer"
+	"github.com/netlify/gotrue/models"
+	"github.com/netlify/gotrue/storage"
 )
 
 func sendConfirmation(tx *storage.Connection, u *models.User, mailer mailer.Mailer, maxFrequency time.Duration, referrerURL string) error {

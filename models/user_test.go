@@ -7,9 +7,9 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
-	"github.com/yext/gotrue/conf"
-	"github.com/yext/gotrue/storage"
-	"github.com/yext/gotrue/storage/test"
+	"github.com/netlify/gotrue/conf"
+	"github.com/netlify/gotrue/storage"
+	"github.com/netlify/gotrue/storage/test"
 )
 
 const modelsTestConfig = "../hack/test.env"

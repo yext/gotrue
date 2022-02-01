@@ -7,8 +7,8 @@ import (
 
 	"github.com/go-chi/chi"
 	"github.com/gofrs/uuid"
-	"github.com/yext/gotrue/models"
-	"github.com/yext/gotrue/storage"
+	"github.com/netlify/gotrue/models"
+	"github.com/netlify/gotrue/storage"
 )
 
 type adminUserParams struct {

@@ -9,8 +9,8 @@ import (
 	"github.com/gobuffalo/pop/v5/columns"
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
-	"github.com/yext/gotrue/conf"
-	"github.com/yext/gotrue/storage/namespace"
+	"github.com/netlify/gotrue/conf"
+	"github.com/netlify/gotrue/storage/namespace"
 )
 
 // Connection is the interface a storage provider must implement.

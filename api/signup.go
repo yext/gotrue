@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/yext/gotrue/models"
-	"github.com/yext/gotrue/storage"
+	"github.com/netlify/gotrue/models"
+	"github.com/netlify/gotrue/storage"
 )
 
 // SignupParams are the parameters the Signup endpoint accepts
@@ -51,6 +51,7 @@ func (a *API) Signup(w http.ResponseWriter, r *http.Request) error {
 	err = a.db.Transaction(func(tx *storage.Connection) error {
 		var terr error
 		if user != nil {
+
 			return badRequestError("A user with this email address has already been registered")
 		} else {
 			params.Provider = "email"

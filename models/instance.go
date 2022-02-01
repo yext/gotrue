@@ -7,9 +7,9 @@ import (
 	"github.com/gobuffalo/pop/v5"
 	"github.com/gofrs/uuid"
 	"github.com/pkg/errors"
-	"github.com/yext/gotrue/conf"
-	"github.com/yext/gotrue/storage"
-	"github.com/yext/gotrue/storage/namespace"
+	"github.com/netlify/gotrue/conf"
+	"github.com/netlify/gotrue/storage"
+	"github.com/netlify/gotrue/storage/namespace"
 )
 
 const baseConfigKey = ""

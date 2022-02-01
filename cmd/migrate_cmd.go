@@ -8,7 +8,7 @@ import (
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
-	"github.com/yext/gotrue/conf"
+	"github.com/netlify/gotrue/conf"
 )
 
 var migrateCmd = cobra.Command{

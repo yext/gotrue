@@ -8,8 +8,8 @@ import (
 	"github.com/go-chi/chi"
 	"github.com/gofrs/uuid"
 	"github.com/pkg/errors"
-	"github.com/yext/gotrue/conf"
-	"github.com/yext/gotrue/models"
+	"github.com/netlify/gotrue/conf"
+	"github.com/netlify/gotrue/models"
 )
 
 func (a *API) loadInstance(w http.ResponseWriter, r *http.Request) (context.Context, error) {

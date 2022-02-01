@@ -21,8 +21,8 @@ import (
 	dsig "github.com/russellhaering/goxmldsig"
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
-	"github.com/yext/gotrue/conf"
-	"github.com/yext/gotrue/models"
+	"github.com/netlify/gotrue/conf"
+	"github.com/netlify/gotrue/models"
 )
 
 type ExternalSamlTestSuite struct {

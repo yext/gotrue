@@ -12,7 +12,7 @@ import (
 	"github.com/didip/tollbooth/v5/limiter"
 	"github.com/gofrs/uuid"
 	jwt "github.com/golang-jwt/jwt/v4"
-	"github.com/yext/gotrue/models"
+	"github.com/netlify/gotrue/models"
 )
 
 const (

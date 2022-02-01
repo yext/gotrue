@@ -7,8 +7,8 @@ import (
 
 	"github.com/gofrs/uuid"
 	"github.com/pkg/errors"
-	"github.com/yext/gotrue/storage"
-	"github.com/yext/gotrue/storage/namespace"
+	"github.com/netlify/gotrue/storage"
+	"github.com/netlify/gotrue/storage/namespace"
 )
 
 type AuditAction string

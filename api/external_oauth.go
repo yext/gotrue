@@ -5,7 +5,7 @@ import (
 	"net/http"
 
 	"github.com/sirupsen/logrus"
-	"github.com/yext/gotrue/api/provider"
+	"github.com/netlify/gotrue/api/provider"
 )
 
 // loadOAuthState parses the `state` query parameter as a JWS payload,

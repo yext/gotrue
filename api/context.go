@@ -5,8 +5,8 @@ import (
 
 	"github.com/gofrs/uuid"
 	jwt "github.com/golang-jwt/jwt/v4"
-	"github.com/yext/gotrue/conf"
-	"github.com/yext/gotrue/models"
+	"github.com/netlify/gotrue/conf"
+	"github.com/netlify/gotrue/models"
 )
 
 type contextKey string

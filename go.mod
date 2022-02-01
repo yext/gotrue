@@ -1,4 +1,4 @@
-module github.com/yext/gotrue
+module github.com/netlify/gotrue
 
 require (
 	github.com/GoogleCloudPlatform/cloudsql-proxy v1.27.0

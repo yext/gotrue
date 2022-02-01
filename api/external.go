@@ -12,9 +12,9 @@ import (
 	"github.com/gofrs/uuid"
 	jwt "github.com/golang-jwt/jwt/v4"
 	"github.com/sirupsen/logrus"
-	"github.com/yext/gotrue/api/provider"
-	"github.com/yext/gotrue/models"
-	"github.com/yext/gotrue/storage"
+	"github.com/netlify/gotrue/api/provider"
+	"github.com/netlify/gotrue/models"
+	"github.com/netlify/gotrue/storage"
 )
 
 type ExternalProviderClaims struct {
