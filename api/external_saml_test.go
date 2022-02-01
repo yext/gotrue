@@ -209,10 +209,10 @@ func (ts *ExternalSamlTestSuite) TestMetadata() {
 	err := xml.NewDecoder(w.Body).Decode(md)
 	ts.Require().NoError(err)
 
-	ts.Equal("http://localhost/hitchhikerusers/saml", md.EntityID)
+	ts.Equal("http://localhost/saml", md.EntityID)
 	for _, acs := range md.SPSSODescriptor.AssertionConsumerServices {
 		if acs.Binding == "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" {
-			ts.Equal("http://localhost/hitchhikerusers/saml/acs", acs.Location)
+			ts.Equal("http://localhost/saml/acs", acs.Location)
 			break
 		}
 	}
