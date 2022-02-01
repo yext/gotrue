@@ -3,13 +3,12 @@ package models
 import (
 	"time"
 
-	"github.com/yext/gotrue/storage/namespace"
-
-	"github.com/gobuffalo/pop"
-	"github.com/gobuffalo/uuid"
+	"github.com/gobuffalo/pop/v5"
+	"github.com/gofrs/uuid"
 	"github.com/pkg/errors"
 	"github.com/yext/gotrue/crypto"
 	"github.com/yext/gotrue/storage"
+	"github.com/yext/gotrue/storage/namespace"
 )
 
 // RefreshToken is the database model for refresh tokens.

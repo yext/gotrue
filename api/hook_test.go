@@ -9,7 +9,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/gobuffalo/uuid"
+	"github.com/gofrs/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"github.com/yext/gotrue/conf"
@@ -55,7 +55,7 @@ func TestSignupHookSendInstanceID(t *testing.T) {
 		},
 	}
 
-	require.NoError(t, triggerHook(context.Background(), conn, SignupEvent, user, iid, config))
+	require.NoError(t, triggerEventHooks(context.Background(), conn, SignupEvent, user, iid, config))
 
 	assert.Equal(t, 1, callCount)
 }
@@ -98,11 +98,11 @@ func TestSignupHookFromClaims(t *testing.T) {
 	}
 
 	ctx := context.Background()
-	ctx = withFunctionHooks(ctx, map[string]string{
-		"signup": svr.URL,
+	ctx = withFunctionHooks(ctx, map[string][]string{
+		"signup": []string{svr.URL},
 	})
 
-	require.NoError(t, triggerHook(ctx, conn, SignupEvent, user, iid, config))
+	require.NoError(t, triggerEventHooks(ctx, conn, SignupEvent, user, iid, config))
 
 	assert.Equal(t, 1, callCount)
 }

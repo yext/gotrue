@@ -9,7 +9,7 @@ import (
 	"net/http/httptrace"
 	"net/url"
 
-	"github.com/gobuffalo/uuid"
+	"github.com/gofrs/uuid"
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 	"github.com/yext/gotrue/conf"
