@@ -45,7 +45,7 @@ func (ts *TokenTestSuite) SetupTest() {
 
 func (ts *TokenTestSuite) TestRateLimitToken() {
 	var buffer bytes.Buffer
-	req := httptest.NewRequest(http.MethodPost, "http://localhost/token", &buffer)
+	req := httptest.NewRequest(http.MethodPost, "http://localhost/hitchhikerusers/token", &buffer)
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("My-Custom-Header", "1.2.3.4")
 
@@ -66,7 +66,7 @@ func (ts *TokenTestSuite) TestRateLimitToken() {
 	assert.Equal(ts.T(), http.StatusTooManyRequests, w.Code)
 
 	// It doesn't rate limit a new value for the limited header
-	req = httptest.NewRequest(http.MethodPost, "http://localhost/token", &buffer)
+	req = httptest.NewRequest(http.MethodPost, "http://localhost/hitchhikerusers/token", &buffer)
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("My-Custom-Header", "5.6.7.8")
 	w = httptest.NewRecorder()

@@ -10,7 +10,7 @@ import (
 )
 
 func (ts *ExternalTestSuite) TestSignupExternalGithub() {
-	req := httptest.NewRequest(http.MethodGet, "http://localhost/authorize?provider=github", nil)
+	req := httptest.NewRequest(http.MethodGet, "http://localhost/hitchhikerusers/authorize?provider=github", nil)
 	w := httptest.NewRecorder()
 	ts.API.handler.ServeHTTP(w, req)
 	ts.Require().Equal(http.StatusFound, w.Code)

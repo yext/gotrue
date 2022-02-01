@@ -10,7 +10,7 @@ import (
 )
 
 func (ts *ExternalTestSuite) TestSignupExternalFacebook() {
-	req := httptest.NewRequest(http.MethodGet, "http://localhost/authorize?provider=facebook", nil)
+	req := httptest.NewRequest(http.MethodGet, "http://localhost/hitchhikerusers/authorize?provider=facebook", nil)
 	w := httptest.NewRecorder()
 	ts.API.handler.ServeHTTP(w, req)
 	ts.Require().Equal(http.StatusFound, w.Code)

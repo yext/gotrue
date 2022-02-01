@@ -101,7 +101,7 @@ func (ts *ExternalSamlTestSuite) setupSamlExampleResponse(keyStore dsig.X509KeyS
 }
 
 func (ts *ExternalSamlTestSuite) setupSamlExampleState() string {
-	req := httptest.NewRequest(http.MethodGet, "http://localhost/authorize?provider=saml", nil)
+	req := httptest.NewRequest(http.MethodGet, "http://localhost/hitchhikerusers/authorize?provider=saml", nil)
 	w := httptest.NewRecorder()
 	ts.API.handler.ServeHTTP(w, req)
 	ts.Require().Equal(http.StatusFound, w.Code)
@@ -165,7 +165,7 @@ func (ts *ExternalSamlTestSuite) TestSignupExternalSaml_Callback() {
 	form := url.Values{}
 	form.Add("RelayState", ts.setupSamlExampleState())
 	form.Add("SAMLResponse", ts.setupSamlExampleResponse(idpKeyStore))
-	req := httptest.NewRequest(http.MethodPost, "http://localhost/saml/acs", strings.NewReader(form.Encode()))
+	req := httptest.NewRequest(http.MethodPost, "http://localhost/hitchhikerusers/saml/acs", strings.NewReader(form.Encode()))
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 	w := httptest.NewRecorder()
 	ts.API.handler.ServeHTTP(w, req)
@@ -199,7 +199,7 @@ func (ts *ExternalSamlTestSuite) TestMetadata() {
 	ts.Config.External.Saml.SigningKey = key
 	ts.Config.External.Saml.SigningCert = cert
 
-	req := httptest.NewRequest(http.MethodGet, "http://localhost/saml/metadata", nil)
+	req := httptest.NewRequest(http.MethodGet, "http://localhost/hitchhikerusers/saml/metadata", nil)
 	w := httptest.NewRecorder()
 	ts.API.handler.ServeHTTP(w, req)
 
@@ -209,10 +209,10 @@ func (ts *ExternalSamlTestSuite) TestMetadata() {
 	err := xml.NewDecoder(w.Body).Decode(md)
 	ts.Require().NoError(err)
 
-	ts.Equal("http://localhost/saml", md.EntityID)
+	ts.Equal("http://localhost/hitchhikerusers/saml", md.EntityID)
 	for _, acs := range md.SPSSODescriptor.AssertionConsumerServices {
 		if acs.Binding == "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" {
-			ts.Equal("http://localhost/saml/acs", acs.Location)
+			ts.Equal("http://localhost/hitchhikerusers/saml/acs", acs.Location)
 			break
 		}
 	}

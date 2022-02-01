@@ -10,7 +10,7 @@ import (
 )
 
 func (ts *ExternalTestSuite) TestSignupExternalGoogle() {
-	req := httptest.NewRequest(http.MethodGet, "http://localhost/authorize?provider=google", nil)
+	req := httptest.NewRequest(http.MethodGet, "http://localhost/hitchhikerusers/authorize?provider=google", nil)
 	w := httptest.NewRecorder()
 	ts.API.handler.ServeHTTP(w, req)
 	ts.Require().Equal(http.StatusFound, w.Code)

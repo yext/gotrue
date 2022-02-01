@@ -10,7 +10,7 @@ import (
 )
 
 func (ts *ExternalTestSuite) TestSignupExternalGitlab() {
-	req := httptest.NewRequest(http.MethodGet, "http://localhost/authorize?provider=gitlab", nil)
+	req := httptest.NewRequest(http.MethodGet, "http://localhost/hitchhikerusers/authorize?provider=gitlab", nil)
 	w := httptest.NewRecorder()
 	ts.API.handler.ServeHTTP(w, req)
 	ts.Require().Equal(http.StatusFound, w.Code)

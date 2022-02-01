@@ -84,7 +84,7 @@ func (ts *InviteTestSuite) TestInvite() {
 	}))
 
 	// Setup request
-	req := httptest.NewRequest(http.MethodPost, "http://localhost/invite", &buffer)
+	req := httptest.NewRequest(http.MethodPost, "http://localhost/hitchhikerusers/invite", &buffer)
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", ts.token))
 
@@ -106,7 +106,7 @@ func (ts *InviteTestSuite) TestInvite_WithoutAccess() {
 	}))
 
 	// Setup request
-	req := httptest.NewRequest(http.MethodPost, "http://localhost/invite", &buffer)
+	req := httptest.NewRequest(http.MethodPost, "http://localhost/hitchhikerusers/invite", &buffer)
 	req.Header.Set("Content-Type", "application/json")
 
 	// Setup response recorder
@@ -138,7 +138,7 @@ func (ts *InviteTestSuite) TestVerifyInvite() {
 	}))
 
 	// Setup request
-	req := httptest.NewRequest(http.MethodPost, "http://localhost/verify", &buffer)
+	req := httptest.NewRequest(http.MethodPost, "http://localhost/hitchhikerusers/verify", &buffer)
 	req.Header.Set("Content-Type", "application/json")
 
 	// Setup response recorder
@@ -170,7 +170,7 @@ func (ts *InviteTestSuite) TestVerifyInvite_NoPassword() {
 	}))
 
 	// Setup request
-	req := httptest.NewRequest(http.MethodPost, "http://localhost/verify", &buffer)
+	req := httptest.NewRequest(http.MethodPost, "http://localhost/hitchhikerusers/verify", &buffer)
 	req.Header.Set("Content-Type", "application/json")
 
 	// Setup response recorder
@@ -214,7 +214,7 @@ func (ts *InviteTestSuite) TestInviteExternalGitlab() {
 	require.NoError(ts.T(), json.NewEncoder(&buffer).Encode(InviteParams{
 		Email: "gitlab@example.com",
 	}))
-	req := httptest.NewRequest(http.MethodPost, "http://localhost/invite", &buffer)
+	req := httptest.NewRequest(http.MethodPost, "http://localhost/hitchhikerusers/invite", &buffer)
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", ts.token))
 
@@ -227,7 +227,7 @@ func (ts *InviteTestSuite) TestInviteExternalGitlab() {
 	require.NoError(ts.T(), err)
 
 	// get redirect url w/ state
-	req = httptest.NewRequest(http.MethodGet, "http://localhost/authorize?provider=gitlab&invite_token="+user.ConfirmationToken, nil)
+	req = httptest.NewRequest(http.MethodGet, "http://localhost/hitchhikerusers/authorize?provider=gitlab&invite_token="+user.ConfirmationToken, nil)
 	w = httptest.NewRecorder()
 	ts.API.handler.ServeHTTP(w, req)
 	ts.Require().Equal(http.StatusFound, w.Code)
@@ -305,7 +305,7 @@ func (ts *InviteTestSuite) TestInviteExternalGitlab_MismatchedEmails() {
 	require.NoError(ts.T(), json.NewEncoder(&buffer).Encode(InviteParams{
 		Email: "gitlab@example.com",
 	}))
-	req := httptest.NewRequest(http.MethodPost, "http://localhost/invite", &buffer)
+	req := httptest.NewRequest(http.MethodPost, "http://localhost/hitchhikerusers/invite", &buffer)
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", ts.token))
 
@@ -318,7 +318,7 @@ func (ts *InviteTestSuite) TestInviteExternalGitlab_MismatchedEmails() {
 	require.NoError(ts.T(), err)
 
 	// get redirect url w/ state
-	req = httptest.NewRequest(http.MethodGet, "http://localhost/authorize?provider=gitlab&invite_token="+user.ConfirmationToken, nil)
+	req = httptest.NewRequest(http.MethodGet, "http://localhost/hitchhikerusers/authorize?provider=gitlab&invite_token="+user.ConfirmationToken, nil)
 	w = httptest.NewRecorder()
 	ts.API.handler.ServeHTTP(w, req)
 	ts.Require().Equal(http.StatusFound, w.Code)

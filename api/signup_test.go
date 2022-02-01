@@ -148,7 +148,7 @@ func (ts *SignupTestSuite) TestWebhookTriggered() {
 			"a": 1,
 		},
 	}))
-	req := httptest.NewRequest(http.MethodPost, "http://localhost/signup", &buffer)
+	req := httptest.NewRequest(http.MethodPost, "http://localhost/hitchhikerusers/signup", &buffer)
 	req.Header.Set("Content-Type", "application/json")
 
 	w := httptest.NewRecorder()
@@ -172,7 +172,7 @@ func (ts *SignupTestSuite) TestFailingWebhook() {
 			"a": 1,
 		},
 	}))
-	req := httptest.NewRequest(http.MethodPost, "http://localhost/signup", &buffer)
+	req := httptest.NewRequest(http.MethodPost, "http://localhost/hitchhikerusers/signup", &buffer)
 	req.Header.Set("Content-Type", "application/json")
 
 	// Setup response recorder
@@ -201,7 +201,7 @@ func (ts *SignupTestSuite) TestSignupTwice() {
 	encode()
 
 	// Setup request
-	req := httptest.NewRequest(http.MethodPost, "http://localhost/signup", &buffer)
+	req := httptest.NewRequest(http.MethodPost, "http://localhost/hitchhikerusers/signup", &buffer)
 	req.Header.Set("Content-Type", "application/json")
 
 	// Setup response recorder
@@ -242,7 +242,7 @@ func (ts *SignupTestSuite) TestVerifySignup() {
 	}))
 
 	// Setup request
-	req := httptest.NewRequest(http.MethodPost, "http://localhost/verify", &buffer)
+	req := httptest.NewRequest(http.MethodPost, "http://localhost/hitchhikerusers/verify", &buffer)
 	req.Header.Set("Content-Type", "application/json")
 
 	// Setup response recorder
