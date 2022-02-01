@@ -3,7 +3,7 @@ package api
 import (
 	"context"
 
-	jwt "github.com/dgrijalva/jwt-go"
+	"github.com/dgrijalva/jwt-go"
 	"github.com/gobuffalo/uuid"
 	"github.com/yext/gotrue/conf"
 	"github.com/yext/gotrue/models"
@@ -196,18 +196,18 @@ func getExternalReferrer(ctx context.Context) string {
 }
 
 // withFunctionHooks adds the provided function hooks to the context.
-func withFunctionHooks(ctx context.Context, hooks map[string]string) context.Context {
+func withFunctionHooks(ctx context.Context, hooks map[string][]string) context.Context {
 	return context.WithValue(ctx, functionHooksKey, hooks)
 }
 
 // getFunctionHooks reads the request ID from the context.
-func getFunctionHooks(ctx context.Context) map[string]string {
+func getFunctionHooks(ctx context.Context) map[string][]string {
 	obj := ctx.Value(functionHooksKey)
 	if obj == nil {
-		return map[string]string{}
+		return map[string][]string{}
 	}
 
-	return obj.(map[string]string)
+	return obj.(map[string][]string)
 }
 
 // withAdminUser adds the admin user to the context.
