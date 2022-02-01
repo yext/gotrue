@@ -82,6 +82,8 @@ func (ts *AdminTestSuite) makeSystemUser() string {
 	return token
 }
 
+// Test checks
+
 // TestAdminUsersUnauthorized tests API /admin/users route without authentication
 func (ts *AdminTestSuite) TestAdminUsersUnauthorized() {
 	req := httptest.NewRequest(http.MethodGet, "/admin/users", nil)
