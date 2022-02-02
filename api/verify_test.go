@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/gobuffalo/uuid"
+	"github.com/gofrs/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
@@ -60,7 +60,7 @@ func (ts *VerifyTestSuite) TestVerify_PasswordRecovery() {
 	}))
 
 	// Setup request
-	req := httptest.NewRequest(http.MethodPost, "http://localhost/recover", &buffer)
+	req := httptest.NewRequest(http.MethodPost, "http://localhost/hitchhikerusers/recover", &buffer)
 	req.Header.Set("Content-Type", "application/json")
 
 	// Setup response recorder
@@ -81,7 +81,7 @@ func (ts *VerifyTestSuite) TestVerify_PasswordRecovery() {
 		"token": u.RecoveryToken,
 	}))
 
-	req = httptest.NewRequest(http.MethodPost, "http://localhost/verify", &vbuffer)
+	req = httptest.NewRequest(http.MethodPost, "http://localhost/hitchhikerusers/verify", &vbuffer)
 	req.Header.Set("Content-Type", "application/json")
 
 	w = httptest.NewRecorder()

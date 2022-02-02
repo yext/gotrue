@@ -20,7 +20,7 @@ import (
 	"github.com/yext/gotrue/models"
 	"github.com/yext/gotrue/storage"
 
-	"github.com/gobuffalo/uuid"
+	"github.com/gofrs/uuid"
 	saml2 "github.com/russellhaering/gosaml2"
 	"github.com/russellhaering/gosaml2/types"
 	dsig "github.com/russellhaering/goxmldsig"

@@ -6,7 +6,7 @@ import (
 	"net/url"
 	"testing"
 
-	"github.com/gobuffalo/uuid"
+	"github.com/gofrs/uuid"
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
 	"github.com/yext/gotrue/conf"
@@ -59,7 +59,7 @@ func (ts *ExternalTestSuite) createUser(email string, name string, avatar string
 }
 
 func performAuthorizationRequest(ts *ExternalTestSuite, provider string, inviteToken string) *httptest.ResponseRecorder {
-	authorizeURL := "http://localhost/authorize?provider=" + provider
+	authorizeURL := "http://localhost/hitchhikerusers/authorize?provider=" + provider
 	if inviteToken != "" {
 		authorizeURL = authorizeURL + "&invite_token=" + inviteToken
 	}
@@ -140,7 +140,7 @@ func assertAuthorizationFailure(ts *ExternalTestSuite, u *url.URL, errorDescript
 
 // TestSignupExternalUnsupported tests API /authorize for an unsupported external provider
 func (ts *ExternalTestSuite) TestSignupExternalUnsupported() {
-	req := httptest.NewRequest(http.MethodGet, "http://localhost/authorize?provider=external", nil)
+	req := httptest.NewRequest(http.MethodGet, "http://localhost/hitchhikerusers/authorize?provider=external", nil)
 	w := httptest.NewRecorder()
 	ts.API.handler.ServeHTTP(w, req)
 	ts.Equal(w.Code, http.StatusBadRequest)

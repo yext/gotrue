@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/gobuffalo/uuid"
+	"github.com/gofrs/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
@@ -60,7 +60,7 @@ func (ts *RecoverTestSuite) TestRecover_FirstRecovery() {
 	}))
 
 	// Setup request
-	req := httptest.NewRequest(http.MethodPost, "http://localhost/recover", &buffer)
+	req := httptest.NewRequest(http.MethodPost, "http://localhost/hitchhikerusers/recover", &buffer)
 	req.Header.Set("Content-Type", "application/json")
 
 	// Setup response recorder
@@ -88,7 +88,7 @@ func (ts *RecoverTestSuite) TestRecover_NoEmailSent() {
 	}))
 
 	// Setup request
-	req := httptest.NewRequest(http.MethodPost, "http://localhost/recover", &buffer)
+	req := httptest.NewRequest(http.MethodPost, "http://localhost/hitchhikerusers/recover", &buffer)
 	req.Header.Set("Content-Type", "application/json")
 
 	// Setup response recorder
@@ -119,7 +119,7 @@ func (ts *RecoverTestSuite) TestRecover_NewEmailSent() {
 	}))
 
 	// Setup request
-	req := httptest.NewRequest(http.MethodPost, "http://localhost/recover", &buffer)
+	req := httptest.NewRequest(http.MethodPost, "http://localhost/hitchhikerusers/recover", &buffer)
 	req.Header.Set("Content-Type", "application/json")
 
 	// Setup response recorder

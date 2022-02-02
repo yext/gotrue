@@ -12,7 +12,7 @@ import (
 	"github.com/didip/tollbooth/v5"
 	"github.com/didip/tollbooth/v5/limiter"
 	"github.com/go-chi/chi"
-	"github.com/gobuffalo/uuid"
+	"github.com/gofrs/uuid"
 	"github.com/imdario/mergo"
 	"github.com/rs/cors"
 	"github.com/sebest/xff"
@@ -87,6 +87,7 @@ func NewAPIWithVersion(ctx context.Context, globalConfig *conf.GlobalConfigurati
 	r.UseBypass(xffmw.Handler)
 	r.Use(addRequestID(globalConfig))
 	r.Use(recoverer)
+	r.UseBypass(tracer)
 
 	r.Get("/health", api.HealthCheck)
 

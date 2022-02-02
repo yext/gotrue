@@ -9,7 +9,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/gobuffalo/uuid"
+	"github.com/gofrs/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
@@ -59,7 +59,7 @@ func (ts *UserTestSuite) TestUser_UpdatePassword() {
 	}))
 
 	// Setup request
-	req := httptest.NewRequest(http.MethodPut, "http://localhost/user", &buffer)
+	req := httptest.NewRequest(http.MethodPut, "http://localhost/hitchhikerusers/user", &buffer)
 	req.Header.Set("Content-Type", "application/json")
 
 	token, err := generateAccessToken(u, time.Second*time.Duration(ts.Config.JWT.Exp), ts.Config.JWT.Secret)

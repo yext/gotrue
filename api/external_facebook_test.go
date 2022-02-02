@@ -6,11 +6,11 @@ import (
 	"net/http/httptest"
 	"net/url"
 
-	jwt "github.com/dgrijalva/jwt-go"
+	jwt "github.com/golang-jwt/jwt/v4"
 )
 
 func (ts *ExternalTestSuite) TestSignupExternalFacebook() {
-	req := httptest.NewRequest(http.MethodGet, "http://localhost/authorize?provider=facebook", nil)
+	req := httptest.NewRequest(http.MethodGet, "http://localhost/hitchhikerusers/authorize?provider=facebook", nil)
 	w := httptest.NewRecorder()
 	ts.API.handler.ServeHTTP(w, req)
 	ts.Require().Equal(http.StatusFound, w.Code)

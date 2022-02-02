@@ -9,8 +9,8 @@ import (
 	"testing"
 	"time"
 
-	jwt "github.com/dgrijalva/jwt-go"
-	"github.com/gobuffalo/uuid"
+	"github.com/gofrs/uuid"
+	jwt "github.com/golang-jwt/jwt/v4"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
@@ -82,27 +82,27 @@ func (ts *AdminTestSuite) makeSystemUser() string {
 	return token
 }
 
-// TestAdminUsersUnauthorized tests API /admin/users route without authentication
+// TestAdminUsersUnauthorized tests API /hitchhikerusers/admin/users route without authentication
 func (ts *AdminTestSuite) TestAdminUsersUnauthorized() {
-	req := httptest.NewRequest(http.MethodGet, "/admin/users", nil)
+	req := httptest.NewRequest(http.MethodGet, "/hitchhikerusers/admin/users", nil)
 	w := httptest.NewRecorder()
 
 	ts.API.handler.ServeHTTP(w, req)
 	assert.Equal(ts.T(), http.StatusUnauthorized, w.Code)
 }
 
-// TestAdminUsers tests API /admin/users route
+// TestAdminUsers tests API /hitchhikerusers/admin/users route
 func (ts *AdminTestSuite) TestAdminUsers() {
 	// Setup request
 	w := httptest.NewRecorder()
-	req := httptest.NewRequest(http.MethodGet, "/admin/users", nil)
+	req := httptest.NewRequest(http.MethodGet, "/hitchhikerusers/admin/users", nil)
 
 	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", ts.token))
 
 	ts.API.handler.ServeHTTP(w, req)
 	require.Equal(ts.T(), http.StatusOK, w.Code)
 
-	assert.Equal(ts.T(), "</admin/users?page=1>; rel=\"last\"", w.HeaderMap.Get("Link"))
+	assert.Equal(ts.T(), "</hitchhikerusers/admin/users?page=1>; rel=\"last\"", w.HeaderMap.Get("Link"))
 	assert.Equal(ts.T(), "1", w.HeaderMap.Get("X-Total-Count"))
 
 	data := struct {
@@ -117,7 +117,7 @@ func (ts *AdminTestSuite) TestAdminUsers() {
 	}
 }
 
-// TestAdminUsers tests API /admin/users route
+// TestAdminUsers tests API /hitchhikerusers/admin/users route
 func (ts *AdminTestSuite) TestAdminUsers_Pagination() {
 	u, err := models.NewUser(ts.instanceID, "test1@example.com", "test", ts.Config.JWT.Aud, nil)
 	require.NoError(ts.T(), err, "Error making new user")
@@ -129,14 +129,14 @@ func (ts *AdminTestSuite) TestAdminUsers_Pagination() {
 
 	// Setup request
 	w := httptest.NewRecorder()
-	req := httptest.NewRequest(http.MethodGet, "/admin/users?per_page=1", nil)
+	req := httptest.NewRequest(http.MethodGet, "/hitchhikerusers/admin/users?per_page=1", nil)
 
 	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", ts.token))
 
 	ts.API.handler.ServeHTTP(w, req)
 	require.Equal(ts.T(), http.StatusOK, w.Code)
 
-	assert.Equal(ts.T(), "</admin/users?page=2&per_page=1>; rel=\"next\", </admin/users?page=3&per_page=1>; rel=\"last\"", w.HeaderMap.Get("Link"))
+	assert.Equal(ts.T(), "</hitchhikerusers/admin/users?page=2&per_page=1>; rel=\"next\", </hitchhikerusers/admin/users?page=3&per_page=1>; rel=\"last\"", w.HeaderMap.Get("Link"))
 	assert.Equal(ts.T(), "3", w.HeaderMap.Get("X-Total-Count"))
 
 	data := make(map[string]interface{})
@@ -146,7 +146,7 @@ func (ts *AdminTestSuite) TestAdminUsers_Pagination() {
 	}
 }
 
-// TestAdminUsers tests API /admin/users route
+// TestAdminUsers tests API /hitchhikerusers/admin/users route
 func (ts *AdminTestSuite) TestAdminUsers_SortAsc() {
 	u, err := models.NewUser(ts.instanceID, "test1@example.com", "test", ts.Config.JWT.Aud, nil)
 	require.NoError(ts.T(), err, "Error making new user")
@@ -157,7 +157,7 @@ func (ts *AdminTestSuite) TestAdminUsers_SortAsc() {
 
 	// Setup request
 	w := httptest.NewRecorder()
-	req := httptest.NewRequest(http.MethodGet, "/admin/users", nil)
+	req := httptest.NewRequest(http.MethodGet, "/hitchhikerusers/admin/users", nil)
 	qv := req.URL.Query()
 	qv.Set("sort", "created_at asc")
 	req.URL.RawQuery = qv.Encode()
@@ -178,7 +178,7 @@ func (ts *AdminTestSuite) TestAdminUsers_SortAsc() {
 	assert.Equal(ts.T(), "test1@example.com", data.Users[1].Email)
 }
 
-// TestAdminUsers tests API /admin/users route
+// TestAdminUsers tests API /hitchhikerusers/admin/users route
 func (ts *AdminTestSuite) TestAdminUsers_SortDesc() {
 	u, err := models.NewUser(ts.instanceID, "test1@example.com", "test", ts.Config.JWT.Aud, nil)
 	require.NoError(ts.T(), err, "Error making new user")
@@ -188,7 +188,7 @@ func (ts *AdminTestSuite) TestAdminUsers_SortDesc() {
 
 	// Setup request
 	w := httptest.NewRecorder()
-	req := httptest.NewRequest(http.MethodGet, "/admin/users", nil)
+	req := httptest.NewRequest(http.MethodGet, "/hitchhikerusers/admin/users", nil)
 
 	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", ts.token))
 
@@ -206,7 +206,7 @@ func (ts *AdminTestSuite) TestAdminUsers_SortDesc() {
 	assert.Equal(ts.T(), "test@example.com", data.Users[1].Email)
 }
 
-// TestAdminUsers tests API /admin/users route
+// TestAdminUsers tests API /hitchhikerusers/admin/users route
 func (ts *AdminTestSuite) TestAdminUsers_FilterEmail() {
 	u, err := models.NewUser(ts.instanceID, "test1@example.com", "test", ts.Config.JWT.Aud, nil)
 	require.NoError(ts.T(), err, "Error making new user")
@@ -214,7 +214,7 @@ func (ts *AdminTestSuite) TestAdminUsers_FilterEmail() {
 
 	// Setup request
 	w := httptest.NewRecorder()
-	req := httptest.NewRequest(http.MethodGet, "/admin/users?filter=test1", nil)
+	req := httptest.NewRequest(http.MethodGet, "/hitchhikerusers/admin/users?filter=test1", nil)
 
 	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", ts.token))
 
@@ -231,7 +231,7 @@ func (ts *AdminTestSuite) TestAdminUsers_FilterEmail() {
 	assert.Equal(ts.T(), "test1@example.com", data.Users[0].Email)
 }
 
-// TestAdminUsers tests API /admin/users route
+// TestAdminUsers tests API /hitchhikerusers/admin/users route
 func (ts *AdminTestSuite) TestAdminUsers_FilterName() {
 	u, err := models.NewUser(ts.instanceID, "test1@example.com", "test", ts.Config.JWT.Aud, nil)
 	require.NoError(ts.T(), err, "Error making new user")
@@ -239,7 +239,7 @@ func (ts *AdminTestSuite) TestAdminUsers_FilterName() {
 
 	// Setup request
 	w := httptest.NewRecorder()
-	req := httptest.NewRequest(http.MethodGet, "/admin/users?filter=User", nil)
+	req := httptest.NewRequest(http.MethodGet, "/hitchhikerusers/admin/users?filter=User", nil)
 
 	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", ts.token))
 
@@ -256,7 +256,7 @@ func (ts *AdminTestSuite) TestAdminUsers_FilterName() {
 	assert.Equal(ts.T(), "test@example.com", data.Users[0].Email)
 }
 
-// TestAdminUserCreate tests API /admin/user route (POST)
+// TestAdminUserCreate tests API /hitchhikerusers/admin/user route (POST)
 func (ts *AdminTestSuite) TestAdminUserCreate() {
 	var buffer bytes.Buffer
 	require.NoError(ts.T(), json.NewEncoder(&buffer).Encode(map[string]interface{}{
@@ -266,7 +266,7 @@ func (ts *AdminTestSuite) TestAdminUserCreate() {
 
 	// Setup request
 	w := httptest.NewRecorder()
-	req := httptest.NewRequest(http.MethodPost, "/admin/users", &buffer)
+	req := httptest.NewRequest(http.MethodPost, "/hitchhikerusers/admin/users", &buffer)
 
 	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", ts.token))
 
@@ -279,7 +279,7 @@ func (ts *AdminTestSuite) TestAdminUserCreate() {
 	assert.Equal(ts.T(), "email", data.AppMetaData["provider"])
 }
 
-// TestAdminUserGet tests API /admin/user route (GET)
+// TestAdminUserGet tests API /hitchhikerusers/admin/user route (GET)
 func (ts *AdminTestSuite) TestAdminUserGet() {
 	u, err := models.NewUser(ts.instanceID, "test1@example.com", "test", ts.Config.JWT.Aud, map[string]interface{}{"full_name": "Test Get User"})
 	require.NoError(ts.T(), err, "Error making new user")
@@ -287,7 +287,7 @@ func (ts *AdminTestSuite) TestAdminUserGet() {
 
 	// Setup request
 	w := httptest.NewRecorder()
-	req := httptest.NewRequest(http.MethodGet, fmt.Sprintf("/admin/users/%s", u.ID), nil)
+	req := httptest.NewRequest(http.MethodGet, fmt.Sprintf("/hitchhikerusers/admin/users/%s", u.ID), nil)
 
 	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", ts.token))
 
@@ -305,7 +305,7 @@ func (ts *AdminTestSuite) TestAdminUserGet() {
 	assert.Equal(ts.T(), "Test Get User", md["full_name"])
 }
 
-// TestAdminUserUpdate tests API /admin/user route (UPDATE)
+// TestAdminUserUpdate tests API /hitchhikerusers/admin/user route (UPDATE)
 func (ts *AdminTestSuite) TestAdminUserUpdate() {
 	u, err := models.NewUser(ts.instanceID, "test1@example.com", "test", ts.Config.JWT.Aud, nil)
 	require.NoError(ts.T(), err, "Error making new user")
@@ -324,7 +324,7 @@ func (ts *AdminTestSuite) TestAdminUserUpdate() {
 
 	// Setup request
 	w := httptest.NewRecorder()
-	req := httptest.NewRequest(http.MethodPut, fmt.Sprintf("/admin/users/%s", u.ID), &buffer)
+	req := httptest.NewRequest(http.MethodPut, fmt.Sprintf("/hitchhikerusers/admin/users/%s", u.ID), &buffer)
 
 	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", ts.token))
 
@@ -344,7 +344,7 @@ func (ts *AdminTestSuite) TestAdminUserUpdate() {
 	assert.Contains(ts.T(), data.AppMetaData["roles"], "editor")
 }
 
-// TestAdminUserUpdate tests API /admin/user route (UPDATE) as system user
+// TestAdminUserUpdate tests API /hitchhikerusers/admin/user route (UPDATE) as system user
 func (ts *AdminTestSuite) TestAdminUserUpdateAsSystemUser() {
 	u, err := models.NewUser(ts.instanceID, "test1@example.com", "test", ts.Config.JWT.Aud, nil)
 	require.NoError(ts.T(), err, "Error making new user")
@@ -363,7 +363,7 @@ func (ts *AdminTestSuite) TestAdminUserUpdateAsSystemUser() {
 
 	// Setup request
 	w := httptest.NewRecorder()
-	req := httptest.NewRequest(http.MethodPut, fmt.Sprintf("/admin/users/%s", u.ID), &buffer)
+	req := httptest.NewRequest(http.MethodPut, fmt.Sprintf("/hitchhikerusers/admin/users/%s", u.ID), &buffer)
 
 	token := ts.makeSystemUser()
 
@@ -390,7 +390,7 @@ func (ts *AdminTestSuite) TestAdminUserUpdateAsSystemUser() {
 	assert.Contains(ts.T(), u.AppMetaData["roles"], "editor")
 }
 
-// TestAdminUserDelete tests API /admin/user route (DELETE)
+// TestAdminUserDelete tests API /hitchhikerusers/admin/user route (DELETE)
 func (ts *AdminTestSuite) TestAdminUserDelete() {
 	u, err := models.NewUser(ts.instanceID, "test-delete@example.com", "test", ts.Config.JWT.Aud, nil)
 	require.NoError(ts.T(), err, "Error making new user")
@@ -398,7 +398,7 @@ func (ts *AdminTestSuite) TestAdminUserDelete() {
 
 	// Setup request
 	w := httptest.NewRecorder()
-	req := httptest.NewRequest(http.MethodDelete, fmt.Sprintf("/admin/users/%s", u.ID), nil)
+	req := httptest.NewRequest(http.MethodDelete, fmt.Sprintf("/hitchhikerusers/admin/users/%s", u.ID), nil)
 
 	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", ts.token))
 
@@ -406,7 +406,7 @@ func (ts *AdminTestSuite) TestAdminUserDelete() {
 	require.Equal(ts.T(), http.StatusOK, w.Code)
 }
 
-// TestAdminUserCreateWithManagementToken tests API /admin/user route using the management token (POST)
+// TestAdminUserCreateWithManagementToken tests API /hitchhikerusers/admin/user route using the management token (POST)
 func (ts *AdminTestSuite) TestAdminUserCreateWithManagementToken() {
 	var buffer bytes.Buffer
 	require.NoError(ts.T(), json.NewEncoder(&buffer).Encode(map[string]interface{}{
@@ -416,7 +416,7 @@ func (ts *AdminTestSuite) TestAdminUserCreateWithManagementToken() {
 
 	// Setup request
 	w := httptest.NewRecorder()
-	req := httptest.NewRequest(http.MethodPost, "/admin/users", &buffer)
+	req := httptest.NewRequest(http.MethodPost, "/hitchhikerusers/admin/users", &buffer)
 
 	req.Header.Set("Authorization", "Bearer foobar")
 	req.Header.Set("X-JWT-AUD", "op-test-aud")
@@ -440,7 +440,7 @@ func (ts *AdminTestSuite) TestAdminUserCreateWithDisabledEmailLogin() {
 
 	// Setup request
 	w := httptest.NewRecorder()
-	req := httptest.NewRequest(http.MethodPost, "/admin/users", &buffer)
+	req := httptest.NewRequest(http.MethodPost, "/hitchhikerusers/admin/users", &buffer)
 
 	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", ts.token))
 

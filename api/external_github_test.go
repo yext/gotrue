@@ -6,11 +6,11 @@ import (
 	"net/http/httptest"
 	"net/url"
 
-	jwt "github.com/dgrijalva/jwt-go"
+	jwt "github.com/golang-jwt/jwt/v4"
 )
 
 func (ts *ExternalTestSuite) TestSignupExternalGithub() {
-	req := httptest.NewRequest(http.MethodGet, "http://localhost/authorize?provider=github", nil)
+	req := httptest.NewRequest(http.MethodGet, "http://localhost/hitchhikerusers/authorize?provider=github", nil)
 	w := httptest.NewRecorder()
 	ts.API.handler.ServeHTTP(w, req)
 	ts.Require().Equal(http.StatusFound, w.Code)

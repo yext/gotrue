@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"github.com/gobuffalo/uuid"
+	"github.com/gofrs/uuid"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"github.com/yext/gotrue/conf"

@@ -8,8 +8,8 @@ import (
 	"testing"
 	"time"
 
-	jwt "github.com/dgrijalva/jwt-go"
-	"github.com/gobuffalo/uuid"
+	"github.com/gofrs/uuid"
+	jwt "github.com/golang-jwt/jwt/v4"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
@@ -69,13 +69,13 @@ func (ts *AuditTestSuite) TestAuditGet() {
 	// CHECK FOR AUDIT LOG
 
 	w := httptest.NewRecorder()
-	req := httptest.NewRequest(http.MethodGet, "/admin/audit", nil)
+	req := httptest.NewRequest(http.MethodGet, "/hitchhikerusers/admin/audit", nil)
 	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", ts.token))
 
 	ts.API.handler.ServeHTTP(w, req)
 	require.Equal(ts.T(), http.StatusOK, w.Code)
 
-	assert.Equal(ts.T(), "</admin/audit?page=1>; rel=\"last\"", w.HeaderMap.Get("Link"))
+	assert.Equal(ts.T(), "</hitchhikerusers/admin/audit?page=1>; rel=\"last\"", w.HeaderMap.Get("Link"))
 	assert.Equal(ts.T(), "1", w.HeaderMap.Get("X-Total-Count"))
 
 	logs := []models.AuditLogEntry{}
@@ -94,10 +94,10 @@ func (ts *AuditTestSuite) TestAuditFilters() {
 	ts.prepareDeleteEvent()
 
 	queries := []string{
-		"/admin/audit?query=action:user_deleted",
-		"/admin/audit?query=type:team",
-		"/admin/audit?query=author:user",
-		"/admin/audit?query=author:@example.com",
+		"/hitchhikerusers/admin/audit?query=action:user_deleted",
+		"/hitchhikerusers/admin/audit?query=type:team",
+		"/hitchhikerusers/admin/audit?query=author:user",
+		"/hitchhikerusers/admin/audit?query=author:@example.com",
 	}
 
 	for _, q := range queries {
@@ -129,7 +129,7 @@ func (ts *AuditTestSuite) prepareDeleteEvent() {
 
 	// Setup request
 	w := httptest.NewRecorder()
-	req := httptest.NewRequest(http.MethodDelete, fmt.Sprintf("/admin/users/%s", u.ID), nil)
+	req := httptest.NewRequest(http.MethodDelete, fmt.Sprintf("/hitchhikerusers/admin/users/%s", u.ID), nil)
 	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", ts.token))
 
 	ts.API.handler.ServeHTTP(w, req)

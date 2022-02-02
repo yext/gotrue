@@ -15,7 +15,7 @@ func TestSettings_DefaultProviders(t *testing.T) {
 	require.NoError(t, err)
 
 	// Setup request
-	req := httptest.NewRequest(http.MethodGet, "http://localhost/settings", nil)
+	req := httptest.NewRequest(http.MethodGet, "http://localhost/hitchhikerusers/settings", nil)
 	req.Header.Set("Content-Type", "application/json")
 
 	w := httptest.NewRecorder()
@@ -41,7 +41,7 @@ func TestSettings_EmailDisabled(t *testing.T) {
 	config.External.Email.Disabled = true
 
 	// Setup request
-	req := httptest.NewRequest(http.MethodGet, "http://localhost/settings", nil)
+	req := httptest.NewRequest(http.MethodGet, "http://localhost/hitchhikerusers/settings", nil)
 	req.Header.Set("Content-Type", "application/json")
 
 	ctx, err := WithInstanceConfig(context.Background(), config, instanceID)
@@ -62,7 +62,7 @@ func TestSettings_ExternalName(t *testing.T) {
 	api, _, _, err := setupAPIForTestForInstance()
 	require.NoError(t, err)
 
-	req := httptest.NewRequest(http.MethodGet, "http://localhost/settings", nil)
+	req := httptest.NewRequest(http.MethodGet, "http://localhost/hitchhikerusers/settings", nil)
 	req.Header.Set("Content-Type", "application/json")
 	w := httptest.NewRecorder()
 	api.handler.ServeHTTP(w, req)
