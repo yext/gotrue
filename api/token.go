@@ -218,6 +218,7 @@ func (a *API) setCookieToken(config *conf.Configuration, tokenString string, ses
 		HttpOnly: true,
 		Path:     "/",
 		Domain:   ".yext.com",
+		SameSite: http.SameSiteNoneMode,
 	}
 	if !session {
 		cookie.Expires = time.Now().Add(exp)
